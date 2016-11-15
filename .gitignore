@@ -1,0 +1,158 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+
+//在黄龙门口站街开启
+//找到dnf并移动到左上角
+dnf=Plugin.Window.Find("地下城与勇士", "地下城与勇士")
+Call Plugin.Window.Move(dnf, 0, 0)
+    Delay int(Rnd*50+800)
+//佣兵归队进图
+Rem 重开
+KeyDown "S", 1
+KeyDown "D", 1
+    Delay int(Rnd*4+3)*600
+KeyUp "S", 1
+KeyUp "D", 1
+    Delay int(Rnd*3+2)*200
+KeyPress "Space", int(Rnd*2+2)
+    Delay int(Rnd*3+2)*400
+KeyPress "A", 2
+    Delay int(Rnd*3+3)*100
+KeyPress "Space", 1
+    Delay int(Rnd*3+3)*100
+KeyPress "D", 3
+    Delay int(Rnd*3+2)*100
+KeyPress "Space", 1
+    Delay int(Rnd*3+3)*100
+KeyPress "A", 2
+    Delay int(Rnd*3+2)*200
+KeyPress "Space", 1
+    Delay int(Rnd*3+3)*100
+KeyPress "D", 3
+    Delay int(Rnd*3+2)*100
+KeyPress "Space", int(Rnd*2+2)
+    Delay int(Rnd*3+3)*100
+//主循环体脸滚键盘打怪
+i=1
+While i < 30000
+    Call jx()
+    Call jc()
+    KeyPress "Space", 1
+    Delay int(Rnd*6+1)*5
+    KeyPress "B", 1
+    Delay int(Rnd*6+1)*5
+    KeyPress "N", 1
+    Delay int(Rnd*6+1)*5
+    KeyPress "H", 1
+    Delay int(Rnd*6+1)*5
+    KeyPress "V", 1 //宠物技能
+    Delay int(Rnd*6+1)*5
+    KeyPress "Y", 1
+    Delay int(Rnd*6+1)*5
+    KeyPress "U", 1
+    Delay int(Rnd*6+1)*5
+    KeyPress "I", 1
+    Delay int(Rnd*6+1)*5
+    KeyPress "O", 1
+    Delay int(Rnd*6+1)*5
+    KeyPress "X", 1 //复活币
+    Delay int(Rnd*6+1)*5
+    KeyPress "P", 1
+    Delay int(Rnd*6+1)*5
+    KeyPress ";", 1
+    Delay int(Rnd*6+1)*5
+    KeyPress ",", 1
+    Delay int(Rnd*6+1)*5
+    KeyPress ".", 1
+    Delay int(Rnd*6+1)*5
+    //血量过低时吃键位1的药
+    IfColor 260, 70, "0", 0 Then
+        KeyPress "1", 1
+    End If
+    //出现卡死问题等蓝消耗完时回城并重新执行脚本
+    IfColor 759, 569, "222222", 0 Then
+        Delay int(Rnd*10+1)*50
+        KeyPress "Esc", 1
+        Delay int(Rnd*3+1)*50
+        MoveTo 480+int(Rnd*20+1), 440+int(Rnd*10+1)
+        Delay int(Rnd*3+1)*50
+        LeftClick 2
+        Delay int(Rnd*3+1)*50
+        KeyPress "Esc", 1
+        Delay int(Rnd*3+1)*50
+        MoveTo 480+int(Rnd*20+1), 440+int(Rnd*10+1)
+        Delay int(Rnd*3+1)*50
+        LeftClick 2
+        Delay int(Rnd*3+1)*10000
+        Goto 重开
+    End If
+    i=i+1
+Wend
+ExitScript
+//怪物死后捡物品的子程序
+Sub jx()  
+    IfColor 472,77,"0",0 Then
+        Delay int(Rnd*3+2)*500
+        //KeyPress "Q", 1
+        //Delay int(Rnd*3+2)*500
+        KeyPress "E", 1
+        Delay int(Rnd*3+3)*200
+        KeyPress "K", 1
+        Delay int(Rnd*3+3)*100
+        KeyPress "K", 1
+        Delay int(Rnd*2+4)*100
+        KeyPress "K", 1
+        Delay int(Rnd*3+5)*100
+        KeyPress "K", 1
+        Delay int(Rnd*2+4)*100
+        KeyPress "K", 1
+        Delay int(Rnd*3+3)*100
+        KeyPress "K", 1
+        Delay int(Rnd*2+4)*100
+        KeyPress "K", 1
+        Delay int(Rnd*3+2)*100
+    End If
+End Sub
+//打完继续或者回城的子程序
+Sub jc()
+    IfColor 696,86,"808080", 0 Then
+        KeyPress "F12", 1
+        Delay int(Rnd*3+1)*100
+        KeyPress "F12", 1
+        Delay int(Rnd*3+1)*5000
+    ExitScript
+    Else 
+        KeyPress "F10", 1
+        Delay int(Rnd*3+1)*10
+        KeyPress "F10", 1
+        Delay int(Rnd*3+1)*10
+    End If
+End Sub
